@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, decimal, boolean } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -25,4 +25,33 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
-// TODO: Add your tables here
+export const events = mysqlTable("events", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Type of event: aéreo (aerial), terrestre (ground), marítimo (maritime) */
+  type: mysqlEnum("type", ["aéreo", "terrestre", "marítimo"]).notNull(),
+  /** Country of origin: iran or israel */
+  country: mysqlEnum("country", ["iran", "israel"]).notNull(),
+  /** Event description */
+  description: text("description").notNull(),
+  /** Source name (e.g., Reuters, BBC, etc.) */
+  sourceName: varchar("sourceName", { length: 255 }).notNull(),
+  /** Source URL for verification */
+  sourceUrl: varchar("sourceUrl", { length: 512 }).notNull(),
+  /** Latitude coordinate */
+  latitude: varchar("latitude", { length: 20 }).notNull(),
+  /** Longitude coordinate */
+  longitude: varchar("longitude", { length: 20 }).notNull(),
+  /** Location name/description */
+  locationName: varchar("locationName", { length: 255 }).notNull(),
+  /** Whether event is confirmed by admin */
+  confirmed: boolean("confirmed").default(false).notNull(),
+  /** Event occurrence timestamp */
+  eventDate: timestamp("eventDate").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  /** Admin who confirmed the event */
+  confirmedBy: int("confirmedBy"),
+});
+
+export type Event = typeof events.$inferSelect;
+export type InsertEvent = typeof events.$inferInsert;

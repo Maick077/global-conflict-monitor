@@ -1,5 +1,27 @@
 {
   "version": "7",
   "dialect": "mysql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1772630236914,
+      "tag": "0000_fancy_naoko",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1772630364232,
+      "tag": "0001_outgoing_puppet_master",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1772630420354,
+      "tag": "0002_aromatic_daredevil",
+      "breakpoints": true
+    }
+  ]
 }
