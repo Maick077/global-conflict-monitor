@@ -27,6 +27,19 @@ export default function EventStatsComponent({ stats, lastUpdate }: EventStatsPro
     }
   };
 
+  const getTypeLabel = (type: string): string => {
+    switch (type) {
+      case "aéreo":
+        return "Aéreo";
+      case "terrestre":
+        return "Terrestre";
+      case "marítimo":
+        return "Marítimo";
+      default:
+        return type;
+    }
+  };
+
   const getTypeIcon = (type: string) => {
     switch (type) {
       case "aéreo":
@@ -88,7 +101,7 @@ export default function EventStatsComponent({ stats, lastUpdate }: EventStatsPro
               >
                 <div className="text-2xl mb-1">{getTypeIcon(type)}</div>
                 <div className="text-lg font-bold">{count}</div>
-                <div className="text-xs capitalize">{type}</div>
+                <div className="text-xs">{getTypeLabel(type)}</div>
               </div>
             ))}
           </div>

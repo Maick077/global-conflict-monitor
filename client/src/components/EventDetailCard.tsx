@@ -18,6 +18,30 @@ export default function EventDetailCard({
   onDelete,
   isAdmin,
 }: EventDetailCardProps) {
+  const getTypeLabel = (type: string): string => {
+    switch (type) {
+      case "aéreo":
+        return "Aéreo";
+      case "terrestre":
+        return "Terrestre";
+      case "marítimo":
+        return "Marítimo";
+      default:
+        return type;
+    }
+  };
+
+  const getCountryLabel = (country: string): string => {
+    switch (country) {
+      case "iran":
+        return "Irã";
+      case "israel":
+        return "Israel";
+      default:
+        return country;
+    }
+  };
+
   const getTypeIcon = (type: string) => {
     switch (type) {
       case "aéreo":
@@ -71,10 +95,10 @@ export default function EventDetailCard({
         {/* Status Badge */}
         <div className="flex items-center gap-2">
           <span className={`px-3 py-1 rounded-full text-xs font-medium ${getTypeColor(event.type)} bg-opacity-20`}>
-            {event.type}
+            {getTypeLabel(event.type)}
           </span>
           <span className="px-3 py-1 rounded-full text-xs font-medium text-foreground bg-card border border-border/50">
-            {getCountryEmoji(event.country)} {event.country}
+            {getCountryEmoji(event.country)} {getCountryLabel(event.country)}
           </span>
           {event.confirmed && (
             <span className="px-3 py-1 rounded-full text-xs font-medium text-green-400 bg-green-900/20 border border-green-700/50">

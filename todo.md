@@ -105,3 +105,10 @@
 - [ ] Criar checkpoint final
 - [ ] Validar todas as funcionalidades
 - [ ] Entregar ao usuário com instruções
+
+
+## Bugs Corrigidos
+
+- [x] Corrigir bugs do mapa quando mexe na página (adicionado preferCanvas, invalidateSize, tratamento de erros)
+- [x] Traduzir nomes dos países para português Brasil no mapa (Irã, Israel)
+- [x] Traduzir labels do mapa para português Brasil (tipos de evento, datas em pt-BR)

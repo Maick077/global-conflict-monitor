@@ -22,6 +22,30 @@ export default function EventFilters({
   const types = ["aéreo", "terrestre", "marítimo"];
   const countries = ["iran", "israel"];
 
+  const getTypeLabel = (type: string): string => {
+    switch (type) {
+      case "aéreo":
+        return "Aéreo";
+      case "terrestre":
+        return "Terrestre";
+      case "marítimo":
+        return "Marítimo";
+      default:
+        return type;
+    }
+  };
+
+  const getCountryLabel = (country: string): string => {
+    switch (country) {
+      case "iran":
+        return "Irã";
+      case "israel":
+        return "Israel";
+      default:
+        return country;
+    }
+  };
+
   const hasActiveFilters = selectedType || selectedCountry;
 
   const getTypeColor = (type: string): string => {
@@ -88,7 +112,7 @@ export default function EventFilters({
                 {type === "aéreo" && "✈️"}
                 {type === "terrestre" && "🚁"}
                 {type === "marítimo" && "⚓"}
-                <span className="ml-1 capitalize">{type}</span>
+                <span className="ml-1">{getTypeLabel(type)}</span>
               </Button>
             ))}
           </div>
@@ -110,7 +134,7 @@ export default function EventFilters({
               >
                 {country === "iran" && "🇮🇷"}
                 {country === "israel" && "🇮🇱"}
-                <span className="ml-1">{country}</span>
+                <span className="ml-1">{getCountryLabel(country)}</span>
               </Button>
             ))}
           </div>
